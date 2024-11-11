@@ -28,10 +28,10 @@ class AmplitudeHistogram(torch.nn.Module):
     
     def __init__(self, hop_length):
         super().__init__()
-        kernel = torch.ones(hop_length)/hop_length
+        #kernel = torch.ones(hop_length)/hop_length
+        kernel = torch.ones(400)/400
         kernel = kernel.unsqueeze(0)
-        self.conv = torch.nn.Conv1d(1, 1, hop_length, stride=hop_length, padding=hop_length//2, bias=False)
-        self.conv.weight.data = kernel.unsqueeze(1)
+        self.conv = torch.nn.Conv1d(1, 1, 400, stride=hop_length, padding=0, bias=False) #hop_length//2
         self.conv.requires_grad_(False)
         
     def forward(self, x):
